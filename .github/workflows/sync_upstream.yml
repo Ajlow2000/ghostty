@@ -3,10 +3,13 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily at midnight UTC
   workflow_dispatch:  # Allows manual triggering
+    branches:
+      - main
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout Forked Repository
         uses: actions/checkout@v3
